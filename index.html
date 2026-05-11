@@ -1,0 +1,1620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>万方生物小分子肽动物蛋白肥料项目分析</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #647184;
+      --line: #d8e0e6;
+      --paper: #f6f8f4;
+      --white: #ffffff;
+      --blue: #1864ab;
+      --blue-dark: #0b3d75;
+      --green: #2f9e44;
+      --green-soft: #dcefd4;
+      --teal: #138f8a;
+      --amber: #c97f13;
+      --red: #b7472a;
+      --shadow: 0 18px 45px rgba(17, 32, 45, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 268px 1fr;
+    }
+
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      color: #eaf7ef;
+      background: linear-gradient(180deg, #0b3d75 0%, #13746f 58%, #214136 100%);
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, transparent 0 28%, #1b8bc7 28% 55%, transparent 55%),
+        linear-gradient(45deg, #56c878 0 42%, #2f9e44 42% 70%, #0f7d41 70%);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      color: #bfe1d5;
+      font-size: 12px;
+    }
+
+    .tabs {
+      display: grid;
+      gap: 8px;
+    }
+
+    .tab {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 12px 13px;
+      color: #d8efe6;
+      background: rgba(255, 255, 255, 0.06);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .tab:hover,
+    .tab.active {
+      color: #0b3d75;
+      background: #ffffff;
+      border-color: #ffffff;
+    }
+
+    .aside-note {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: #c3ded6;
+      font-size: 13px;
+    }
+
+    main {
+      min-width: 0;
+      padding: 34px;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) 360px;
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      padding: 34px;
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin-bottom: 14px;
+      font-size: 40px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 840px;
+      color: #3d4a58;
+      font-size: 17px;
+    }
+
+    .source-card {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #d8ead5;
+      box-shadow: var(--shadow);
+    }
+
+    .source-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 22px 0 0;
+    }
+
+    .stat {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--blue-dark);
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      margin: 22px 0;
+      padding: 28px;
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      gap: 18px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .section-header p {
+      max-width: 560px;
+      margin: 0;
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--blue-dark);
+      background: #eef7f3;
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.55;
+      box-shadow: inset 0 0 0 1px rgba(19, 143, 138, 0.08);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fbfcfd;
+    }
+
+    .item h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .item p,
+    .item li {
+      color: #3f4b59;
+      font-size: 15px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #184134;
+      background: var(--green-soft);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: center;
+    }
+
+    .step {
+      min-height: 116px;
+      padding: 14px;
+      border-radius: 8px;
+      color: #10253d;
+      background: #edf5f7;
+      border: 1px solid #c9dce2;
+    }
+
+    .step b {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+
+    .arrow {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .evidence {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .evidence figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f7faf8;
+    }
+
+    .evidence img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      background: #ffffff;
+      border-top: 1px solid var(--line);
+    }
+
+    .accent {
+      border-left: 5px solid var(--green);
+    }
+
+    .warning {
+      border-left: 5px solid var(--amber);
+    }
+
+    .placeholder {
+      display: none;
+      min-height: 68vh;
+      padding: 34px;
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .placeholder.active,
+    .analysis.active {
+      display: block;
+    }
+
+    .analysis {
+      display: none;
+    }
+
+    .placeholder h1 {
+      font-size: 32px;
+    }
+
+    .page-intro {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+
+    .intro-copy {
+      grid-column: span 2;
+    }
+
+    .page-intro .lead {
+      max-width: none;
+      margin: 0;
+    }
+
+    .intro-insight {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+      padding: 18px;
+      color: var(--blue-dark);
+      background: #eef7f3;
+      box-shadow: inset 0 0 0 1px rgba(19, 143, 138, 0.08);
+    }
+
+    .intro-insight b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .intro-insight span {
+      color: #345066;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .empty-state {
+      margin-top: 24px;
+      border: 1px dashed #a7b5c2;
+      border-radius: 8px;
+      padding: 28px;
+      color: var(--muted);
+      background: #fbfcfd;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .matrix .item:nth-child(1) {
+      border-top: 4px solid var(--blue);
+    }
+
+    .matrix .item:nth-child(2) {
+      border-top: 4px solid var(--green);
+    }
+
+    .matrix .item:nth-child(3) {
+      border-top: 4px solid var(--amber);
+    }
+
+    .matrix .item:nth-child(4) {
+      border-top: 4px solid var(--red);
+    }
+
+    .market-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .market-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfcfd;
+    }
+
+    .market-card b {
+      display: block;
+      color: var(--blue-dark);
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .market-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .competitor-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .competitor-table th,
+    .competitor-table td {
+      vertical-align: top;
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .competitor-table th {
+      color: var(--blue-dark);
+      background: #eef5f8;
+      font-weight: 800;
+    }
+
+    .competitor-table tr:nth-child(even) td {
+      background: #fbfcfd;
+    }
+
+    .forecast-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .forecast-table th,
+    .forecast-table td {
+      vertical-align: top;
+      border: 1px solid var(--line);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .forecast-table th {
+      color: var(--blue-dark);
+      background: #eef5f8;
+      font-weight: 800;
+    }
+
+    .forecast-table tr:nth-child(even) td {
+      background: #fbfcfd;
+    }
+
+    .scenario {
+      display: grid;
+      grid-template-columns: 150px 1fr 155px;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 13px;
+      background: #fbfcfd;
+    }
+
+    .scenario + .scenario {
+      margin-top: 10px;
+    }
+
+    .scenario b {
+      color: var(--blue-dark);
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: #e3ebef;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--green));
+    }
+
+    .scenario em {
+      color: var(--muted);
+      font-style: normal;
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .fit {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .fit.high {
+      background: var(--green);
+    }
+
+    .fit.mid {
+      background: var(--amber);
+    }
+
+    .fit.low {
+      background: var(--blue);
+    }
+
+    .source-list {
+      columns: 2;
+      column-gap: 28px;
+      padding-left: 18px;
+      color: #3f4b59;
+      font-size: 14px;
+    }
+
+    .source-list li {
+      break-inside: avoid;
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-color: rgba(24, 100, 171, 0.35);
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: relative;
+        height: auto;
+      }
+
+      .tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      main {
+        padding: 22px;
+      }
+
+      .hero,
+      .grid-2,
+      .grid-3,
+      .evidence,
+      .matrix,
+      .market-strip,
+      .page-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-copy {
+        grid-column: auto;
+      }
+
+      .competitor-table {
+        display: block;
+        overflow-x: auto;
+        white-space: normal;
+      }
+
+      .source-list {
+        columns: 1;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .hero-copy,
+      .section,
+      .placeholder {
+        padding: 22px;
+      }
+
+      .tabs,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .competitor-table,
+      .competitor-table tbody,
+      .competitor-table tr,
+      .competitor-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .competitor-table {
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        overflow-x: visible;
+      }
+
+      .competitor-table thead {
+        display: none;
+      }
+
+      .competitor-table tr {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .competitor-table td {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .competitor-table td:last-child {
+        border-bottom: 0;
+      }
+
+      .competitor-table td::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--blue-dark);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .competitor-table td:nth-child(1)::before {
+        content: "相似度";
+      }
+
+      .competitor-table td:nth-child(2)::before {
+        content: "公司/国家/网址";
+      }
+
+      .competitor-table td:nth-child(3)::before {
+        content: "产品与描述";
+      }
+
+      .competitor-table td:nth-child(4)::before {
+        content: "与万方对比";
+      }
+
+      .competitor-table td:nth-child(5)::before {
+        content: "市场信息";
+      }
+
+      .forecast-table,
+      .forecast-table tbody,
+      .forecast-table tr,
+      .forecast-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .forecast-table {
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        overflow-x: visible;
+      }
+
+      .forecast-table thead {
+        display: none;
+      }
+
+      .forecast-table tr {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .forecast-table td {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .forecast-table td:last-child {
+        border-bottom: 0;
+      }
+
+      .forecast-table td::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--blue-dark);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .forecast-table td:nth-child(1)::before {
+        content: "预测模块";
+      }
+
+      .forecast-table td:nth-child(2)::before {
+        content: "关键假设";
+      }
+
+      .forecast-table td:nth-child(3)::before {
+        content: "测算结果";
+      }
+
+      .forecast-table td:nth-child(4)::before {
+        content: "商业含义";
+      }
+
+      .scenario {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario em {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <strong>万方生物项目工作台</strong>
+          <span>Fertilizer strategy workspace</span>
+        </div>
+      </div>
+
+      <nav class="tabs" aria-label="项目导航">
+        <button class="tab active" data-tab="analysis">产品分析与理解</button>
+        <button class="tab" data-tab="competitors">竞品与市场研究</button>
+        <button class="tab" data-tab="customers">客户与渠道画像</button>
+        <button class="tab" data-tab="forecast">产品市场预测</button>
+        <button class="tab" data-tab="pricing">价格与商业模式</button>
+        <button class="tab" data-tab="roadmap">项目后续工作</button>
+      </nav>
+
+      <p class="aside-note">当前版本已完成产品理解、竞品市场研究、客户渠道画像与产品市场预测。产品信息来源为《万方生物手册.pdf》，市场信息来源为公开网页、政府数据与行业报告摘要。</p>
+    </aside>
+
+    <main>
+      <div class="page">
+        <section id="analysis" class="analysis active">
+          <div class="hero">
+            <div class="hero-copy">
+              <p class="eyebrow">Product analysis and understanding</p>
+              <h1>小分子肽动物蛋白：以废弃物资源化驱动的有机水溶肥产品</h1>
+              <p class="lead">万方生物的核心产品不是单纯补充氮磷钾，而是围绕动物源小分子肽、氨基酸、中微量元素和有机质建立的功能型肥料方案。其叙事重点是绿色循环、土壤修复、抗逆防病、生根促冠、沃土养地和优品丰产。</p>
+              <div class="stats">
+                <div class="stat">
+                  <b>2022</b>
+                  <span>公司成立年份</span>
+                </div>
+                <div class="stat">
+                  <b>6500万</b>
+                  <span>注册资本人民币</span>
+                </div>
+                <div class="stat">
+                  <b>10万吨/年</b>
+                  <span>宣传产能规模</span>
+                </div>
+                <div class="stat">
+                  <b>30%+</b>
+                  <span>宣传化肥减量潜力</span>
+                </div>
+              </div>
+            </div>
+            <div class="source-card">
+              <img src="assets/wanfang-cover.png" alt="万方生物手册封面">
+            </div>
+          </div>
+
+          <section class="section accent">
+            <div class="section-header">
+              <h2>一句话产品理解</h2>
+              <p>从 PDF 看，产品的核心不是“卖肥料”，而是把动物源废弃物转化为可被作物和土壤系统吸收利用的功能营养与土壤改良投入品。</p>
+            </div>
+            <div class="grid-3">
+              <div class="item">
+                <h3>产品属性</h3>
+                <p>高性价比有机水溶肥，核心成分为小分子肽动物蛋白，并复配氨基酸、腐殖质、低聚糖、氮磷钾及中微量元素。</p>
+                <div class="tag-row">
+                  <span class="tag">有机水溶肥</span>
+                  <span class="tag">功能肥</span>
+                  <span class="tag">土壤修复</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>技术来源</h3>
+                <p>宣传中强调动物屠宰废弃物、餐厨垃圾等无害化处理与循环利用，通过催化分解和生物转化生成以小分子肽为主的功能组分。</p>
+                <div class="tag-row">
+                  <span class="tag">废弃物资源化</span>
+                  <span class="tag">生物工程</span>
+                  <span class="tag">绿色循环</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>市场角色</h3>
+                <p>适合被定位为“化肥减量增效 + 土壤健康 + 作物品质提升”的解决方案，面向粮食作物、经济作物、设施果蔬和地方特色作物。</p>
+                <div class="tag-row">
+                  <span class="tag">提质增效</span>
+                  <span class="tag">减肥增效</span>
+                  <span class="tag">特色农业</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>产品机制拆解</h2>
+              <p>PDF 将小分子肽解释为农业“新质生产力”的载体，主要价值来自“易吸收营养 + 土壤微生态改善 + 元素协同利用”。</p>
+            </div>
+            <div class="flow" aria-label="产品作用链路">
+              <div class="step">
+                <b>原料端</b>
+                动物源废弃物、餐厨垃圾等有机资源进入无害化与资源化处理。
+              </div>
+              <div class="arrow">→</div>
+              <div class="step">
+                <b>转化端</b>
+                催化分解、生物转化，形成小分子肽、氨基酸、有机质和微量元素组合。
+              </div>
+              <div class="arrow">→</div>
+              <div class="step">
+                <b>田间端</b>
+                促进根系生长、提高叶绿素合成、增强抗逆和抗病能力，并改善土壤团粒结构。
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>核心功效</h2>
+              <p>手册中反复出现的卖点可以归纳为八类，既有作物端结果，也有土壤端长期价值。</p>
+            </div>
+            <div class="grid-2">
+              <div class="item">
+                <h3>作物端价值</h3>
+                <ul>
+                  <li>抗逆防病，帮助作物应对环境胁迫。</li>
+                  <li>生根促冠，增强根系吸收和植株生长势。</li>
+                  <li>增产、早熟，宣传中强调对农作物增产和早熟效果明显。</li>
+                  <li>优品丰产，提高产品品质、商品性和安全感知。</li>
+                </ul>
+              </div>
+              <div class="item">
+                <h3>土壤端价值</h3>
+                <ul>
+                  <li>持续补充土壤有益养分和有机质。</li>
+                  <li>提升土壤微生物菌群活性。</li>
+                  <li>改善板结现象，使土壤团粒结构更稳定。</li>
+                  <li>辅助化肥减量，宣传可减少化肥使用量 3-5 成或 30% 以上。</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>适用作物与场景</h2>
+              <p>PDF 中列出的应用场景很广，后续市场研究需要进一步判断哪些作物最愿意付费、复购最快、验证成本最低。</p>
+            </div>
+            <div class="grid-3">
+              <div class="item">
+                <h3>粮食作物</h3>
+                <p>谷物、玉米、小麦等。重点价值是稳产增产、减肥增效和大田推广。</p>
+              </div>
+              <div class="item">
+                <h3>经济作物</h3>
+                <p>棉花、红枣、中草药、特色林果等。重点价值是品质提升、抗逆和地方特色产业示范。</p>
+              </div>
+              <div class="item">
+                <h3>果蔬与花卉</h3>
+                <p>设施蔬菜、果树、花卉等。重点价值是商品性、品质稳定性和水肥一体化适配。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>证据与背书</h2>
+              <p>手册提供了试验报告、作物对比图、专家团队和研究院方向，适合作为早期可信度材料，但商业化仍需要可复核的田间数据。</p>
+            </div>
+            <div class="evidence">
+              <figure>
+                <img src="assets/product-overview.png" alt="产品及技术指标页面">
+                <figcaption>产品页：有机水溶肥料登记、包装和技术指标。</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/product-effects.png" alt="产品功效页面">
+                <figcaption>功效页：抗逆防病、生根促冠、沃土养地、优品丰产。</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/field-results.png" alt="棉花玉米实践成果页面">
+                <figcaption>实践页：棉花、玉米等作物使用效果与试验材料。</figcaption>
+              </figure>
+            </div>
+          </section>
+
+        </section>
+
+        <section id="competitors" class="placeholder">
+          <div class="page-intro">
+            <div class="intro-copy">
+              <p class="eyebrow">Upcoming workstream</p>
+              <h1>竞品与市场研究</h1>
+              <p class="lead">全球范围内，与万方生物“小分子肽动物蛋白有机水溶肥”最接近的不是传统复合肥企业，而是以蛋白水解物、氨基酸、多肽和生物刺激素为核心的功能肥公司。直接竞品集中在欧洲，尤其是意大利、西班牙和瑞士/意大利跨国农化体系；中国市场则出现小分子肽、鱼蛋白和氨基酸水溶肥的本土替代品。</p>
+            </div>
+            <div class="intro-insight">
+              <b>核心判断</b>
+              <span>这个赛道不是“有机肥”单一竞争，而是功能型水溶肥、生物刺激素和土壤健康方案之间的交叉竞争。</span>
+            </div>
+          </div>
+
+          <div class="market-strip">
+            <div class="market-card">
+              <b>约 45-50 亿美元</b>
+              <span>全球生物刺激素市场 2024 年公开报告口径，大多落在 45-50 亿美元区间。</span>
+            </div>
+            <div class="market-card">
+              <b>约 80-110 亿美元</b>
+              <span>2030-2032 年预测区间，取决于报告机构、定义范围和是否纳入微生物/海藻/腐殖酸产品。</span>
+            </div>
+            <div class="market-card">
+              <b>约 10%-12% CAGR</b>
+              <span>主流市场报告给出的年复合增长率区间，驱动因素包括减肥增效、逆境管理和可持续农业。</span>
+            </div>
+          </div>
+
+          <section class="section accent">
+            <div class="section-header">
+              <h2>竞品分层判断</h2>
+              <p>万方的关键词是动物源小分子肽、蛋白水解物、有机水溶肥、土壤修复和化肥减量。因此竞品需要按“技术相似度”分层，而不是只看是否叫有机肥。</p>
+            </div>
+            <div class="grid-3">
+              <div class="item">
+                <h3>第一层：直接相似</h3>
+                <p>动物源蛋白水解物、胶原水解氨基酸、小分子肽/多肽肥料。这类产品最接近万方，可直接对比原料、工艺、氨基酸/肽含量、作物试验和价格。</p>
+                <div class="tag-row">
+                  <span class="tag">动物源蛋白</span>
+                  <span class="tag">胶原水解</span>
+                  <span class="tag">小分子肽</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>第二层：功能替代</h3>
+                <p>植物源蛋白水解物、酵母/发酵氨基酸、鱼蛋白水解物。原料不同，但同样以氨基酸、多肽和抗逆促长作为主要卖点。</p>
+                <div class="tag-row">
+                  <span class="tag">植物源 PSP</span>
+                  <span class="tag">鱼蛋白</span>
+                  <span class="tag">氨基酸水溶肥</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>第三层：相邻赛道</h3>
+                <p>海藻酸、腐殖酸/黄腐酸、微生物菌剂和中高端水溶肥。它们争夺同一类预算：提质增产、土壤健康、抗逆和减肥增效。</p>
+                <div class="tag-row">
+                  <span class="tag">海藻酸</span>
+                  <span class="tag">腐殖酸</span>
+                  <span class="tag">微生物菌剂</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>全球相似产品清单</h2>
+              <p>下表优先列出与动物源小分子肽/蛋白水解物最接近的公司和产品；市场规模多为公司或赛道层面公开数据，单品收入通常不公开。</p>
+            </div>
+            <table class="competitor-table">
+              <thead>
+                <tr>
+                  <th>相似度</th>
+                  <th>公司/国家/网址</th>
+                  <th>产品与描述</th>
+                  <th>与万方对比</th>
+                  <th>市场信息</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fit high">高</span></td>
+                  <td><strong>Syngenta / Valagro</strong><br>瑞士/意大利<br><a href="https://www.syngenta.com/" target="_blank" rel="noreferrer">syngenta.com</a></td>
+                  <td><strong>ISABION</strong>：Syngenta/Valagro 公开资料将其描述为由胶原/动物蛋白水解获得的氨基酸和肽类生物刺激素，用于促进养分吸收、帮助作物应对非生物胁迫、提升作物表现。</td>
+                  <td>非常接近万方的“动物蛋白小分子肽”逻辑。差异在于 ISABION 更偏叶面/滴灌生物刺激素品牌化表达，万方更强调废弃物资源化、土壤修复和有机水溶肥。</td>
+                  <td>Syngenta 是全球农化龙头，Valagro 被其收购后成为生物刺激素平台之一；单品收入未披露。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit high">高</span></td>
+                  <td><strong>SICIT Group</strong><br>意大利<br><a href="https://www.sicitgroup.com/" target="_blank" rel="noreferrer">sicitgroup.com</a></td>
+                  <td><strong>SICIT 2000 / Green Hascon 等</strong>：公司以制革副产物为原料生产蛋白水解物，用于农业生物刺激素、动物营养和工业应用；农业端核心是氨基酸和肽类产品。</td>
+                  <td>这是万方最值得研究的国际对标之一：同样把动物源副产物转为高附加值农业投入品，且循环经济叙事更成熟。</td>
+                  <td>公司级别市场信息较多，但农业单品规模不透明。可作为“动物源副产物资源化 + 生物刺激素商业化”的标杆。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit high">高</span></td>
+                  <td><strong>Bioiberica</strong><br>西班牙<br><a href="https://www.bioiberica.com/" target="_blank" rel="noreferrer">bioiberica.com</a></td>
+                  <td><strong>Terra-Sorb Foliar / Radicular</strong>：氨基酸生物刺激素产品线，用于提高作物抗逆、促进营养吸收和恢复生长。Bioiberica 在动物源生物分子方面有长期积累。</td>
+                  <td>产品功能与万方高度重叠，尤其在“氨基酸/肽类促进吸收、抗逆恢复”方面。万方可学习其作物场景化和专业作物方案表达。</td>
+                  <td>单品规模未披露。Bioiberica 属于全球较成熟的氨基酸生物刺激素玩家。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit high">高</span></td>
+                  <td><strong>Tecnobell</strong><br>意大利<br><a href="https://www.tecnobell.eu/" target="_blank" rel="noreferrer">tecnobell.eu</a></td>
+                  <td><strong>Carbion 8 / Carbion 8 TE</strong>：Tecnobell 公开产品资料中属于有机/氨基酸类产品，强调较高游离氨基酸含量；TE 版本复配微量元素，用于改善作物营养状态和生长活力。</td>
+                  <td>功能上接近万方的“氨基酸/肽类促吸收、抗逆、营养效率”逻辑，但公开官网首页和产品资料未稳定证明其为动物源小分子肽，因此应作为氨基酸生物刺激素竞品，而非动物蛋白路线的直接对标。</td>
+                  <td>中型专业肥料/生物刺激素企业，单品市场规模未披露。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit low">相邻</span></td>
+                  <td><strong>山东迈科珍生物科技 / MicroGen</strong><br>中国<br><a href="https://www.microgenbiotech.com.cn/cxtd.asp" target="_blank" rel="noreferrer">microgenbiotech.com.cn</a></td>
+                  <td><strong>土壤修复与微生物组技术</strong>：公开资料显示其业务更偏土壤修复、微生物组、盐碱地治理和高标准农田相关技术，不属于动物蛋白小分子肽肥料的直接同类。</td>
+                  <td>与万方在“土壤修复、盐碱地改良、减肥增效”的应用目标上有重叠，但技术路线不同。建议作为土壤健康解决方案竞品/合作方观察，而不是小分子肽直接竞品。</td>
+                  <td>公司规模和收入未公开。公开企业介绍称其技术在 20 多个省进行过 100 余次实地验证，并涉及重金属降低、增产和减少化肥使用量等指标；更适合作为项目型土壤修复竞品观察。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit mid">中高</span></td>
+                  <td><strong>Tradecorp / Rovensa Next</strong><br>西班牙<br><a href="https://www.rovensanext.com/en/" target="_blank" rel="noreferrer">rovensanext.com</a></td>
+                  <td><strong>Delfan Plus</strong>：Tradecorp/Rovensa 公开资料将其描述为含 L-alpha 游离氨基酸的生物刺激素，常用于逆境恢复、营养吸收、作物活力和品质提升。</td>
+                  <td>功能相近，但公开主页不能稳定确认其为动物源小分子肽。适合作为高端氨基酸生物刺激素竞品，重点对比游离氨基酸含量、施用量、作物场景和价格带。</td>
+                  <td>Rovensa Next 是全球生物解决方案平台，覆盖生物刺激素、生物防治和特种营养等品类；Delfan Plus 单品规模未披露。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit mid">中高</span></td>
+                  <td><strong>Hello Nature</strong><br>意大利<br><a href="https://hello-nature.com/" target="_blank" rel="noreferrer">hello-nature.com</a></td>
+                  <td><strong>Trainer</strong>：植物源蛋白水解物生物刺激素，强调氨基酸、多肽、作物抗逆、营养效率和产量品质。</td>
+                  <td>原料路线不同，是植物源而非动物源，但与万方争夺同一类“肽/氨基酸生物刺激素”预算。其优势是植物源标签更容易进入部分有机农业叙事。</td>
+                  <td>单品规模未公开。Hello Nature 是欧洲蛋白水解物生物刺激素代表企业之一。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit mid">中高</span></td>
+                  <td><strong>Biolchim</strong><br>意大利<br><a href="https://www.biolchim.com/" target="_blank" rel="noreferrer">biolchim.com</a></td>
+                  <td><strong>Fylloton / AminoQuelant 等</strong>：氨基酸、肽类和微量元素络合相关产品线，用于提升营养利用率、抗逆和品质。</td>
+                  <td>功能高度重叠，尤其是“氨基酸 + 微量元素络合”的产品逻辑。万方可借鉴其按作物、物候期和营养问题组织产品组合。</td>
+                  <td>专业生物刺激素与特种肥企业，现属 JM Huber 旗下平台，单品规模未公开。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit mid">中</span></td>
+                  <td><strong>Dramm Corporation</strong><br>美国<br><a href="https://www.dramm.com/" target="_blank" rel="noreferrer">dramm.com</a></td>
+                  <td><strong>Drammatic 系列</strong>：鱼水解物/鱼蛋白液体肥料，常用于有机种植、土壤微生物活性和作物营养补充。</td>
+                  <td>鱼蛋白属于动物源蛋白路线，但通常更偏有机液体肥和微生物食物来源；与万方的“小分子肽动物蛋白 + 减肥增效”存在部分重叠。</td>
+                  <td>单品规模未公开。美国有机种植和园艺渠道中鱼蛋白肥较常见。</td>
+                </tr>
+                <tr>
+                  <td><span class="fit mid">中</span></td>
+                  <td><strong>Valagro / Syngenta</strong><br>意大利/瑞士<br><a href="https://www.syngenta.com/" target="_blank" rel="noreferrer">syngenta.com</a></td>
+                  <td><strong>Megafol</strong>：Valagro 代表性复合型生物刺激素，公开资料强调植物源提取物、氨基酸、维生素、甜菜碱等，用于非生物胁迫管理和恢复生长。</td>
+                  <td>不是动物蛋白路线，但在抗逆恢复、提高作物活力和高端生物刺激素渠道上与万方竞争。更适合作为“国际高端生物刺激素品牌打法”参考。</td>
+                  <td>Valagro 已并入 Syngenta 生物刺激素平台；具体单品规模不公开。</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>市场格局分析</h2>
+              <p>全球竞品显示，万方所在赛道应被定义为“蛋白水解物/氨基酸/肽类生物刺激素 + 有机水溶肥”，而不只是普通有机肥。</p>
+            </div>
+            <div class="grid-2">
+              <div class="item">
+                <h3>欧洲是高端对标区</h3>
+                <p>意大利、西班牙企业在蛋白水解物生物刺激素上布局成熟，产品命名、作物方案、试验报告和国际登记经验都更完整。万方若做高端化，应重点研究 ISABION、SICIT、Terra-Sorb、Trainer 等。</p>
+              </div>
+              <div class="item">
+                <h3>中国市场存在概念机会</h3>
+                <p>国内已有小分子肽、鱼蛋白、氨基酸水溶肥等产品，但“动物源废弃物资源化 + 小分子肽 + 土壤修复 + 减肥增效”的完整叙事并不拥挤。万方可以通过新疆场景和研究院背书形成差异。</p>
+              </div>
+              <div class="item">
+                <h3>竞品核心卖点趋同</h3>
+                <p>大多数相似产品都在讲抗逆、促根、提质、增产、营养吸收和作物恢复。单靠“小分子肽”概念不够，必须用作物数据证明单位投入产出比。</p>
+              </div>
+              <div class="item">
+                <h3>最大验证缺口是 ROI</h3>
+                <p>公开竞品资料很少直接披露亩成本、增收、减肥比例和复购率。万方若能拿出棉花、玉米、小麦、果蔬和红枣的标准化试验数据，会比泛泛宣传更有销售穿透力。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section warning">
+            <div class="section-header">
+              <h2>对万方的启示</h2>
+              <p>竞品研究的结论不是“市场空白”，而是“已有成熟国际赛道，万方需要更精确地切入”。</p>
+            </div>
+            <div class="matrix">
+              <div class="item">
+                <h3>定位建议</h3>
+                <p>不要只叫有机肥，建议定位为“动物源小分子肽蛋白水解物生物刺激型有机水溶肥”，同时保留“土壤修复、减肥增效”的中国市场语言。</p>
+              </div>
+              <div class="item">
+                <h3>差异化抓手</h3>
+                <p>国际竞品多强调作物抗逆和营养吸收，万方可把新疆资源禀赋、动物废弃物资源化、土壤盐碱/板结改善和特色作物示范结合起来。</p>
+              </div>
+              <div class="item">
+                <h3>产品资料补强</h3>
+                <p>需要整理可销售化的指标：小分子肽含量、游离氨基酸谱、总有机质、微量元素、pH、适配施用方式、作物试验和竞品对照。</p>
+              </div>
+              <div class="item">
+                <h3>下一步研究</h3>
+                <p>建议按作物建立竞品地图：棉花、玉米、小麦、红枣、设施蔬菜分别对比价格、用量、亩成本、增产率和渠道利润。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>资料来源</h2>
+              <p>以下为本页引用或参考的公开来源，后续可继续补充各国登记证、标签和经销商价格。</p>
+            </div>
+            <ul class="source-list">
+              <li><a href="https://www.syngenta.com/" target="_blank" rel="noreferrer">Syngenta 官方网站</a>及 ISABION 相关公开产品资料。</li>
+              <li><a href="https://www.syngenta.com/" target="_blank" rel="noreferrer">Syngenta 官方网站</a>及 Syngenta/Valagro 关于 ISABION、Megafol 的公开资料。</li>
+              <li><a href="https://www.sicitgroup.com/" target="_blank" rel="noreferrer">SICIT Group 官方网站</a>，蛋白水解物和农业生物刺激素资料。</li>
+              <li><a href="https://www.bioiberica.com/" target="_blank" rel="noreferrer">Bioiberica 官方网站</a>，Terra-Sorb 与 Plant Health 产品资料。</li>
+              <li><a href="https://www.tecnobell.eu/" target="_blank" rel="noreferrer">Tecnobell 官方网站</a>，Carbion 8 / Carbion 8 TE 和氨基酸产品资料。</li>
+              <li><a href="https://www.rovensanext.com/en/" target="_blank" rel="noreferrer">Rovensa Next 官方网站</a>，Tradecorp / Delfan Plus 和生物刺激素产品资料。</li>
+              <li><a href="https://hello-nature.com/" target="_blank" rel="noreferrer">Hello Nature 官方网站</a>，Trainer 蛋白水解物生物刺激素资料。</li>
+              <li><a href="https://www.biolchim.com/" target="_blank" rel="noreferrer">Biolchim 官方网站</a>，Fylloton、AminoQuelant 等产品线资料。</li>
+              <li><a href="https://www.dramm.com/" target="_blank" rel="noreferrer">Dramm 官方网站</a>，Drammatic 鱼水解物肥料资料。</li>
+              <li><a href="https://www.microgenbiotech.com.cn/cxtd.asp" target="_blank" rel="noreferrer">山东迈科珍生物科技 / MicroGen 页面</a>，土壤修复、微生物组和盐碱地治理相关资料。</li>
+              <li>公开市场报告摘要：Grand View Research、Fortune Business Insights、MarketsandMarkets、Mordor Intelligence 等关于全球 agricultural biostimulants 市场规模和增速的资料。</li>
+            </ul>
+          </section>
+        </section>
+
+        <section id="forecast" class="placeholder">
+          <div class="page-intro">
+            <div class="intro-copy">
+              <p class="eyebrow">Product market forecast</p>
+              <h1>产品市场预测</h1>
+              <p class="lead">沿用客户与渠道画像结论，万方的市场预测不应从“全国功能肥大盘”倒推，而应从新疆棉花、特色林果、盐碱地治理和高附加值果蔬四类场景逐层放大。短期重点不是追求理论市场最大值，而是验证每亩投入能否带来可复购的增收、减肥或品质收益。</p>
+            </div>
+            <div class="intro-insight">
+              <b>核心判断</b>
+              <span>若先在新疆拿下 80-120 万亩可复购应用面积，万方即可从“概念型功能肥”进入区域规模化品牌；3-5 年的关键目标是建立作物方案、渠道利润和田间 ROI 三个闭环。</span>
+            </div>
+          </div>
+
+          <div class="market-strip">
+            <div class="market-card">
+              <b>约 5500 万亩</b>
+              <span>新疆棉花播种面积 3671.9 万亩 + 林果面积约 1800 万亩，是早期最可量化的核心应用底盘。</span>
+            </div>
+            <div class="market-card">
+              <b>约 16-44 亿元</b>
+              <span>按 30-80 元/亩/季终端投入测算，新疆棉花与林果的理论年投入空间。</span>
+            </div>
+            <div class="market-card">
+              <b>0.9-3.0 亿元</b>
+              <span>按 300-600 万亩稳定复购面积、30-50 元/亩出厂净收入测算的 5 年收入目标区间。</span>
+            </div>
+          </div>
+
+          <section class="section accent">
+            <div class="section-header">
+              <h2>预测口径</h2>
+              <p>本页采用“场景面积 × 渗透率 × 亩投入/亩收入”的自下而上模型，避免用过大的全国肥料盘子稀释判断。</p>
+            </div>
+            <table class="forecast-table">
+              <thead>
+                <tr>
+                  <th>预测模块</th>
+                  <th>关键假设</th>
+                  <th>测算结果</th>
+                  <th>商业含义</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>TAM：理论可触达市场</strong></td>
+                  <td>新疆棉花 3671.9 万亩，林果约 1800 万亩；先不把全国粮经作物全部计入，避免高估早期能力。</td>
+                  <td>约 5471.9 万亩核心场景；按终端 30-80 元/亩/季，理论投入空间约 16-44 亿元/年。</td>
+                  <td>新疆单一区域已足够支撑一个亿元级功能肥项目，不必一开始做全国铺货。</td>
+                </tr>
+                <tr>
+                  <td><strong>SAM：3-5 年可服务市场</strong></td>
+                  <td>优先覆盖棉花规模化种植、红枣/香梨/葡萄样板园、盐碱地综合治理项目和设施果蔬高毛利渠道。</td>
+                  <td>按核心场景 10%-20% 具备技术服务和渠道组织条件估算，可服务面积约 550-1100 万亩。</td>
+                  <td>市场拓展的瓶颈不是总面积，而是能否提供配套农服、示范数据、经销商培训和稳定供货。</td>
+                </tr>
+                <tr>
+                  <td><strong>SOM：可获得市场</strong></td>
+                  <td>3 年达到 80-120 万亩稳定应用，5 年达到 300-600 万亩稳定复购；以区域样板和作物套餐扩展。</td>
+                  <td>3 年出厂收入约 2400-6000 万元；5 年出厂收入约 0.9-3.0 亿元。</td>
+                  <td>若复购率、渠道毛利和亩 ROI 能被验证，万方可形成新疆区域强品牌，再向中亚和内地特色农业复制。</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>作物优先级</h2>
+              <p>产品市场预测应跟随客户画像排序：先做面积大、痛点强、组织化程度高的场景，再做高毛利和出海背书场景。</p>
+            </div>
+            <div class="grid-2">
+              <div class="item">
+                <h3>棉花：规模收入底盘</h3>
+                <p>适合验证减肥增效、生根促冠、抗逆稳产和水肥一体化兼容性。若以 3671.9 万亩为底盘，1% 渗透即约 36.7 万亩，按 30-50 元/亩出厂净收入约 1100-1800 万元。</p>
+              </div>
+              <div class="item">
+                <h3>林果：利润与品牌底盘</h3>
+                <p>红枣、葡萄、香梨、核桃、苹果等更关注商品果率、品质稳定和出口叙事。面积约 1800 万亩，适合用“提质增收”而不是单纯“省肥”驱动成交。</p>
+              </div>
+              <div class="item">
+                <h3>盐碱地：项目型增量</h3>
+                <p>盐碱地治理与高标准农田更适合形成政府示范、科研背书和综合解决方案订单，但回款周期、验收指标和项目关系复杂度高于普通经销渠道。</p>
+              </div>
+              <div class="item">
+                <h3>设施果蔬：高毛利样板</h3>
+                <p>设施场景面积较小，但对品质、抗逆和连续采收更敏感，能承担更高亩投入。建议作为高端样板和渠道培训案例，而不是第一阶段销量主战场。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>3-5 年收入情景</h2>
+              <p>以下为管理层可用于讨论的粗测算，核心变量是稳定复购面积和出厂净收入，而不是一次性试用面积。</p>
+            </div>
+            <div class="scenario">
+              <b>保守情景</b>
+              <div class="bar"><span style="width: 32%"></span></div>
+              <em>5 年 300 万亩 × 30 元/亩 = 0.9 亿元</em>
+            </div>
+            <div class="scenario">
+              <b>基准情景</b>
+              <div class="bar"><span style="width: 62%"></span></div>
+              <em>5 年 450 万亩 × 40 元/亩 = 1.8 亿元</em>
+            </div>
+            <div class="scenario">
+              <b>进取情景</b>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <em>5 年 600 万亩 × 50 元/亩 = 3.0 亿元</em>
+            </div>
+            <div class="grid-3" style="margin-top: 16px;">
+              <div class="item">
+                <h3>第 1 年</h3>
+                <p>以 20-50 个示范点、3-8 万亩试用转化为主，目标是形成棉花、红枣、香梨等作物的对照数据和渠道培训资料。</p>
+              </div>
+              <div class="item">
+                <h3>第 2-3 年</h3>
+                <p>以县域样板复制为主，目标从 20-40 万亩扩大到 80-120 万亩稳定应用，收入进入 2400-6000 万元区间。</p>
+              </div>
+              <div class="item">
+                <h3>第 4-5 年</h3>
+                <p>以经销商网络、农服公司和龙头企业订单放大为主，目标 300-600 万亩稳定复购，并启动中亚代理商小规模验证。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section warning">
+            <div class="section-header">
+              <h2>预测校准点</h2>
+              <p>市场空间足够，但预测能否成立取决于四个可验证指标；这些指标应成为下一阶段调研和试验的核心。</p>
+            </div>
+            <div class="matrix">
+              <div class="item">
+                <h3>亩 ROI</h3>
+                <p>至少要形成“投入 1 元带来多少增收或风险降低”的作物账本。棉花看稳产、减肥和抗逆；林果看商品果率、单果品质和收购价格。</p>
+              </div>
+              <div class="item">
+                <h3>复购率</h3>
+                <p>功能肥销售的真正拐点不是试用，而是第二季复购。建议把 60% 以上示范户复购作为区域复制前提。</p>
+              </div>
+              <div class="item">
+                <h3>渠道毛利</h3>
+                <p>经销商需要清晰的利润空间、动销理由和渠道保护。若毛利不足或账期过长，产品再有概念也难以铺开。</p>
+              </div>
+              <div class="item">
+                <h3>产能消化</h3>
+                <p>手册宣传 10 万吨/年产能，按 2-4 公斤/亩用量可覆盖约 2500-5000 万亩。短期瓶颈不在产能，而在市场教育和复购验证。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>结论</h2>
+              <p>万方最现实的增长路径，是用新疆高确定性作物做出可复制的区域样板，再把产品从肥料卖点升级为作物管理方案。</p>
+            </div>
+            <div class="grid-3">
+              <div class="item">
+                <h3>先做新疆，不急全国</h3>
+                <p>新疆棉花和林果已提供足够大的区域底盘，优先做深比全国撒网更容易形成品牌和数据壁垒。</p>
+              </div>
+              <div class="item">
+                <h3>先卖方案，不只卖产品</h3>
+                <p>以“作物 + 物候期 + 用量 + 对照结果 + 经销话术”组织产品包，能降低终端理解成本。</p>
+              </div>
+              <div class="item">
+                <h3>先验证复购，再谈出海</h3>
+                <p>中亚和出口链路有想象空间，但必须建立在新疆田间 ROI、标签资料和渠道服务能力之上。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>资料来源</h2>
+              <p>本页延续客户与渠道画像中的公开数据来源，并补充全球生物刺激素赛道预测口径。</p>
+            </div>
+            <ul class="source-list">
+              <li><a href="https://www.stats.gov.cn/sj/zxfb/202412/t20241225_1957879.html" target="_blank" rel="noreferrer">国家统计局：《国家统计局关于 2024 年棉花产量的公告》</a>，全国及新疆棉花面积、单产和产量。</li>
+              <li><a href="https://www.stats.gov.cn/sj/sjjd/202412/t20241225_1957878.html" target="_blank" rel="noreferrer">国家统计局农村司解读 2024 年棉花生产情况</a>，新疆棉花播种面积、产量和增长解释。</li>
+              <li><a href="https://www.xinjiang.gov.cn/xinjiang/bmdt/202402/6f2d29b99435453e83dd35ecbee8f265.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区人民政府：《新疆力争今年林果全产业链产值达 620 亿元》</a>，林果面积、产量、商品果率和产业集群目标。</li>
+              <li><a href="https://www.grandviewresearch.com/horizon/statistics/agricultural-biologicals-market/function/biostimulants/global" target="_blank" rel="noreferrer">Grand View Research：Global biostimulants segment outlook</a>，全球生物刺激素 2024 年收入与 2030 年预测。</li>
+              <li>《万方生物手册.pdf》，产品产能、核心成分、功效与应用场景描述。</li>
+            </ul>
+          </section>
+        </section>
+
+        <section id="customers" class="placeholder">
+          <div class="page-intro">
+            <div class="intro-copy">
+              <p class="eyebrow">Customer and channel profile</p>
+              <h1>客户与渠道画像</h1>
+              <p class="lead">万方的早期商业化不应从“全国铺货”开始，而应先抓住新疆高确定性产业：棉花规模化种植、特色林果提质、盐碱地与土壤健康治理。渠道上优先绑定能做示范田、能组织农户、能解释 ROI 的区域农资经销商、农服公司、合作社和龙头企业。</p>
+            </div>
+            <div class="intro-insight">
+              <b>核心判断</b>
+              <span>先用新疆场景验证“减肥增效 + 抗逆提质 + 土壤改善”的单位经济模型，再向中亚和果品出口链路尝试外溢。</span>
+            </div>
+          </div>
+
+          <div class="market-strip">
+            <div class="market-card">
+              <b>568.6 万吨</b>
+              <span>2024 年新疆棉花总产量，占全国 92.2%，棉花仍是最优先验证场景。</span>
+            </div>
+            <div class="market-card">
+              <b>约 1800 万亩</b>
+              <span>新疆 2024 年林果面积目标，不含兵团；林果链路更关注品质、商品果率和品牌溢价。</span>
+            </div>
+            <div class="market-card">
+              <b>1336.1 万公顷</b>
+              <span>第二次全国土壤调查口径下新疆盐渍化土壤面积，是土壤修复叙事的重要本地基础。</span>
+            </div>
+          </div>
+
+          <section class="section accent">
+            <div class="section-header">
+              <h2>客户分层</h2>
+              <p>功能肥的购买决策不是单点交易，而是“示范田效果、亩成本、渠道利润、技术服务、复购信心”的组合。</p>
+            </div>
+            <div class="grid-3">
+              <div class="item">
+                <h3>种植大户与农场</h3>
+                <p>他们关心亩成本、增产率、采收品质和水肥一体化兼容性。新疆棉花、玉米、小麦等规模化场景适合用标准试验建立数据。</p>
+                <div class="tag-row">
+                  <span class="tag">亩 ROI</span>
+                  <span class="tag">规模复购</span>
+                  <span class="tag">机械化适配</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>合作社与农服公司</h3>
+                <p>他们能组织示范田、集中采购和统一技术服务，是把产品从“试用”推到“批量复购”的关键中间层。</p>
+                <div class="tag-row">
+                  <span class="tag">示范组织</span>
+                  <span class="tag">集中采购</span>
+                  <span class="tag">服务变现</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>区域经销商</h3>
+                <p>他们关心差异化卖点、终端动销、账期风险和毛利空间。万方需要提供作物方案、对照数据、陈列话术和渠道保护。</p>
+                <div class="tag-row">
+                  <span class="tag">渠道毛利</span>
+                  <span class="tag">终端动销</span>
+                  <span class="tag">作物套餐</span>
+                </div>
+              </div>
+              <div class="item">
+                <h3>龙头企业与订单农业</h3>
+                <p>果品、棉花和加工企业关注稳定品质与可追溯种植。若万方能提升商品果率、纤维品质或减少逆境损失，可进入订单农业投入品清单。</p>
+              </div>
+              <div class="item">
+                <h3>政府项目与示范基地</h3>
+                <p>盐碱地治理、高标准农田、绿色有机果蔬产业集群等项目需要可展示、可验收、可复制的解决方案。</p>
+              </div>
+              <div class="item">
+                <h3>出口型果品企业</h3>
+                <p>新疆果品出口覆盖中亚、中东、东南亚、欧洲等市场，出口企业对品质稳定、商品果率、残留安全和绿色生产叙事更敏感。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>渠道路径</h2>
+              <p>早期渠道不宜只铺货，应以“作物示范田 + 区域样板 + 经销商复制”推进，先形成可被销售人员讲清楚的结果。</p>
+            </div>
+            <div class="flow" aria-label="渠道转化路径">
+              <div class="step">
+                <b>1. 示范田</b>
+                选棉花、红枣、香梨、葡萄等高价值场景做对照，记录用量、亩成本、产量、品质和土壤指标。
+              </div>
+              <div class="arrow">→</div>
+              <div class="step">
+                <b>2. 区域样板</b>
+                绑定合作社、农服公司和县域经销商，形成“一县一作物一套方案”的销售模板。
+              </div>
+              <div class="arrow">→</div>
+              <div class="step">
+                <b>3. 规模复制</b>
+                按作物包、季节包和水肥一体化套餐扩展，并将数据沉淀成招商和培训材料。
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>优先新疆产业</h2>
+              <p>新疆不是普通区域市场，而是万方最适合建立“高规模 + 强痛点 + 可示范”样板的第一战场。</p>
+            </div>
+            <div class="grid-2">
+              <div class="item">
+                <h3>第一优先：棉花</h3>
+                <p>2024 年新疆棉花产量 568.6 万吨，占全国 92.2%；播种面积 3671.9 万亩，单产 154.9 公斤/亩。棉花优势在于规模化、技术集成度高、水肥精准调控普及，适合验证减肥增效、抗逆、生根促冠和土壤改良。</p>
+              </div>
+              <div class="item">
+                <h3>第二优先：特色林果</h3>
+                <p>新疆 2024 年林果面积目标约 1800 万亩，不含兵团，产量目标 880 万吨，商品果率目标 85% 以上。红枣、葡萄、香梨、核桃、苹果等更关注品质、商品果率和出口标准，适合讲“提质增收”。</p>
+              </div>
+              <div class="item">
+                <h3>第三优先：盐碱地与土壤健康</h3>
+                <p>新疆是我国盐渍化土壤面积最大的分布区之一，公开资料引用第二次全国土壤调查数据称新疆盐渍化土壤总面积 1336.1 万公顷。万方的有机质、小分子肽、微生态和土壤团粒结构叙事，能与盐碱地综合利用结合。</p>
+              </div>
+              <div class="item">
+                <h3>第四优先：设施果蔬与高附加值作物</h3>
+                <p>设施场景面积不一定最大，但对品质、抗逆和稳定供应的付费意愿更高。适合作为高毛利样板，不宜作为第一阶段规模主战场。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section warning">
+            <div class="section-header">
+              <h2>出海可能性</h2>
+              <p>短期不建议把出海理解为直接大规模卖肥料，而应先从新疆的跨境农业、果品出口企业和中亚渠道试水。</p>
+            </div>
+            <div class="matrix">
+              <div class="item">
+                <h3>方向一：中亚农资渠道</h3>
+                <p>哈萨克斯坦、乌兹别克斯坦等市场存在肥料进口与现代农业投入品需求，但公开数据看，中国对其肥料出口额仍小，说明渠道、登记和本地化服务门槛不低。适合先做小批量登记、代理商测试和示范园合作。</p>
+              </div>
+              <div class="item">
+                <h3>方向二：新疆果品出口链路</h3>
+                <p>新疆果品出口已经覆盖中亚、中东、东南亚、欧洲等 30 多个国家和地区。万方可先服务出口型果园和果品企业，用“出口品质、绿色生产、商品果率”建立间接出海背书。</p>
+              </div>
+              <div class="item">
+                <h3>方向三：差异化品类</h3>
+                <p>不与大宗氮磷钾硬碰硬，而以动物源小分子肽、氨基酸、生物刺激型有机水溶肥切入。出海资料需要准备英文/俄文标签、成分指标、作物试验、MSDS 和目标国登记路径。</p>
+              </div>
+              <div class="item">
+                <h3>阶段判断</h3>
+                <p>0-12 个月以内以新疆验证和渠道资料建设为主；12-24 个月可在中亚选择 1-2 个代理商试点。没有稳定田间 ROI 数据前，不建议投入重资产海外铺货。</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <h2>资料来源</h2>
+              <p>以下为本页客户、渠道、新疆产业与出海判断使用的公开来源。</p>
+            </div>
+            <ul class="source-list">
+              <li><a href="https://www.stats.gov.cn/sj/zxfb/202412/t20241225_1957879.html" target="_blank" rel="noreferrer">国家统计局：《国家统计局关于 2024 年棉花产量的公告》</a>，全国棉花播种面积、单产、总产及分省数据。</li>
+              <li><a href="https://www.cs.com.cn/xwzx/hg/202412/t20241227_6464517.html" target="_blank" rel="noreferrer">新华社/中证网：《新疆棉花产量占全国 92.2% 创历史新高》</a>，新疆棉花产量、面积、单产和优势产区集中度。</li>
+              <li><a href="https://www.xinjiang.gov.cn/xinjiang/bmdt/202402/6f2d29b99435453e83dd35ecbee8f265.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区人民政府：《新疆力争今年林果全产业链产值达 620 亿元》</a>，新疆林果面积、产量、商品果率和产业集群信息。</li>
+              <li><a href="https://czt.xinjiang.gov.cn/xjczt/c115025/202410/75961677d18b44c8aa8d09966bd9d867.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区财政厅：《2024 年新疆果品产量预计达 1400 万吨》</a>，含兵团果品产量预期、采收销售、出口与加工能力信息。</li>
+              <li><a href="https://www.xinjiang.gov.cn/xinjiang/bmdt/202404/f15ac127c5a84c47826efd0a01cf0ed6.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区人民政府：《前两月新疆果品出口 3.2 万吨》</a>，新疆果品出口国家、品类、出口企业与注册果园信息。</li>
+              <li><a href="https://lcj.xinjiang.gov.cn/lcj/mtbd/202501/a1982ba7c1f645da8032da469897c4db.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区林业和草原局：《2024 年新疆果品出口创历史新高》</a>，新疆果品出口量、出口金额和主要出口品类。</li>
+              <li><a href="https://czt.xinjiang.gov.cn/xjczt/c114970/202408/d90b218d23ed467caf11a0aadb6e561c.shtml" target="_blank" rel="noreferrer">新疆维吾尔自治区财政厅：《盐碱地治理的 N 种新疆方案》</a>，新疆盐渍化土壤面积和盐碱地综合利用背景。</li>
+              <li><a href="https://tradingeconomics.com/kazakhstan/imports/china/fertilizers" target="_blank" rel="noreferrer">Trading Economics / UN Comtrade：Kazakhstan imports of fertilizers from China</a>，哈萨克斯坦自中国进口肥料数据。</li>
+              <li><a href="https://tradingeconomics.com/uzbekistan/imports/china/fertilizers" target="_blank" rel="noreferrer">Trading Economics / UN Comtrade：Uzbekistan imports of fertilizers from China</a>，乌兹别克斯坦自中国进口肥料数据。</li>
+              <li><a href="https://finance.sina.com.cn/roll/2025-01-20/doc-inefrtfv8814308.shtml" target="_blank" rel="noreferrer">农资导报/新浪财经：《2024 年 12 月中国肥料进出口主要品种明细》</a>，2024 年中国肥料出口量、出口金额与主要品类。</li>
+            </ul>
+          </section>
+        </section>
+
+        <section id="pricing" class="placeholder">
+          <p class="eyebrow">Upcoming workstream</p>
+          <h1>价格与商业模式</h1>
+          <p class="lead">此部分将用于研究价格带、包装规格、渠道加价、作物 ROI、套餐设计和示范推广成本。</p>
+          <div class="empty-state">占位中：待补充成本结构、毛利目标、终端价格、试用装策略和年度采购方案。</div>
+        </section>
+
+        <section id="roadmap" class="placeholder">
+          <p class="eyebrow">Upcoming workstream</p>
+          <h1>项目后续工作</h1>
+          <p class="lead">此部分将用于沉淀项目计划、调研清单、访谈对象、数据需求和交付物排期。</p>
+          <div class="empty-state">占位中：待补充研究任务、时间表、责任人、风险清单和最终汇报结构。</div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".analysis, .placeholder");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        tabs.forEach((item) => item.classList.toggle("active", item === tab));
+        panels.forEach((panel) => panel.classList.toggle("active", panel.id === target));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
+</body>
+</html>
